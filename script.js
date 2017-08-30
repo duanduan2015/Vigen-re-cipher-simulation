@@ -66,6 +66,7 @@ class Caesar extends React.Component {
 
     clearPlainText(event) {
         this.setState({plainText:''});
+        this.setState({encryptedText:''});
     }
 
     appendPlainText(c, e) {
@@ -119,7 +120,6 @@ class Caesar extends React.Component {
             <h1>Configuration</h1>
             <h2>Keyword</h2>
             <label>
-            Name:
             <input type="text" value={this.state.editingKey} onChange={this.editCaesarKey} />
             </label>
             <input type="submit" value="Update" onClick={this.getEncryptedText} />
