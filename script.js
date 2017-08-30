@@ -128,7 +128,7 @@ class Caesar extends React.Component {
             <label>
             <input type="text" className="textField" value={this.state.editingKey} onChange={this.editCaesarKey} />
             </label>
-            <input type="submit" value="Update" className="action" onClick={this.getEncryptedText} />
+            <button className="action" onClick={this.getEncryptedText}>Update</button>
             {this.renderCaesarKeyTabular(this.state.key)}
             <h1>Encoding</h1>
             <h2>Source Text</h2>
