@@ -102,10 +102,16 @@ class Caesar extends React.Component {
         var charRow = [];
         var codeRow = [];
         var encoder = new CaesarEncoder(key);
+        var currentTextLength = this.state.plainText.length;
 
         for (var i = 0; i < key.length; i++) {
-            charRow.push(<td>{key.charAt(i)}</td>);
-            codeRow.push(<td>{encoder.internalCode(key.charAt(i))}</td>);
+            if (i == currentTextLength % key.length) {
+                charRow.push(<td className="currentKeyChar">{key.charAt(i)}</td>);
+                codeRow.push(<td className="currentKeyChar">{encoder.internalCode(key.charAt(i))}</td>);
+            } else {
+                charRow.push(<td>{key.charAt(i)}</td>);
+                codeRow.push(<td>{encoder.internalCode(key.charAt(i))}</td>);
+            }
         }
         return (
             <table>
@@ -120,17 +126,17 @@ class Caesar extends React.Component {
             <h1>Configuration</h1>
             <h2>Keyword</h2>
             <label>
-            <input type="text" value={this.state.editingKey} onChange={this.editCaesarKey} />
+            <input type="text" className="textField" value={this.state.editingKey} onChange={this.editCaesarKey} />
             </label>
-            <input type="submit" value="Update" onClick={this.getEncryptedText} />
+            <input type="submit" value="Update" className="action" onClick={this.getEncryptedText} />
             {this.renderCaesarKeyTabular(this.state.key)}
             <h1>Encoding</h1>
             <h2>Source Text</h2>
             {this.renderKeypad()}
-            <input value={this.state.plainText} disabled />
-            <button onClick={this.clearPlainText}>Clear</button>
+            <input value={this.state.plainText} className="textField" disabled />
+            <button className="action" onClick={this.clearPlainText}>Clear</button>
             <h2>Cipher Text</h2>
-            <input value={this.state.encryptedText} disabled />
+            <input value={this.state.encryptedText} className="textField" disabled />
             </div>;
     }
 }
